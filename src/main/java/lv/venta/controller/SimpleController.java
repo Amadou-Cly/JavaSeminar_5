@@ -1,5 +1,7 @@
 package lv.venta.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 import org.springframework.stereotype.Controller;
@@ -32,10 +34,23 @@ public class SimpleController {
 	public String getControllerProduct(Model model) {
 		System.out.println("Product is running");
 		
-		Product productData = new Product(2, "apple",Category.fruits , 250, 1, "Macbook");
+		Product productData = new Product(2, "apple",Category.computer , 250, 1, "Macbook");
 		
 		model.addAttribute("box", productData);
 		return "product-page";
 	}
 	
+	@GetMapping("/all-product")//localhost:8080/all-product
+	public String getControllerProduct(Model model) {
+		System.out.println("All Product is running");
+		
+		Product productData1 = new Product(1, "apple",Category.fruits , 0.25f, 1, "fruits");
+		Product productData = new Product(3, "orange",Category.fruits , 0.85f, 5, "Ogange-fruits");
+		
+		ArrayList<Product>allProducts = new ArrayList<Product>();
+		
+		
+		model.addAttribute("box", all-productData);
+		return "all-product-page";
+		
 }
