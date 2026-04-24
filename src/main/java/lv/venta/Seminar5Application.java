@@ -30,6 +30,7 @@ public class Seminar5Application {
 				prodRepo.save(productData1);
 				prodRepo.save(productDat2);
 				
+				
 			}
 		};
 	} 
