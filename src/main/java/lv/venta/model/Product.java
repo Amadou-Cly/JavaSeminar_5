@@ -1,11 +1,33 @@
 package lv.venta.model;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+
 public class Product {
+	@NotNull
+	@NotEmpty
+	@Pattern(regexp = "[A-Z]{1}[a-z]{2,20}")
 	private String title;
+	
+	@NotNull
 	private Category category;
+	
+	@Min(0)
+	@Max(100)
 	private float price;
+	
+	@Min(0)
+	@Max(100)
 	private int quantity;
+	
+	@NotNull
+	@NotEmpty
 	private String description;
+	
+	// Id should be unique from Data Base
 	private int id;
 	public String getTitle() {
 		return title;
