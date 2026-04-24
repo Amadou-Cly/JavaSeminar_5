@@ -27,7 +27,7 @@ public class Product {
 	@NotEmpty
 	private String description;
 	
-	// Id should be unique from Data Base
+	// Id should be unique from Data Base 
 	private int id;
 	public String getTitle() {
 		return title;
