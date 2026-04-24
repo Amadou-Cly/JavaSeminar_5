@@ -34,7 +34,7 @@ public class SimpleController {
 	public String getControllerProduct(Model model) {
 		System.out.println("Product is running");
 		
-		Product productData = new Product(2, "apple",Category.computer , 250, 1, "Macbook");
+		Product productData = new Product("apple",Category.computer , 250, 1, "Macbook");
 		
 		model.addAttribute("box", productData);
 		return "product-page";
@@ -44,12 +44,11 @@ public class SimpleController {
 	public String getControllerallproduct(Model model) {
 		System.out.println("All Product is running");
 		
-		Product productData1 = new Product(1, "apple",Category.fruits , 0.25f, 1, "fruits");
-		Product productData = new Product(3, "orange",Category.fruits , 0.85f, 5, "Ogange-fruits");
+		Product productData1 = new Product("apple",Category.fruits , 0.25f, 1, "green");
+		Product productData2 = new Product("orange",Category.fruits , 0.85f, 5, "Ogange");
 		
-		ArrayList<Product>allProducts = new ArrayList<Product>();
-		allProducts.add(productData1);
-		allProducts.add(productData);
+		ArrayList<Product>allProducts = new ArrayList<Product>(Arrays.asList(productData1,productData2));
+	
 		
 		model.addAttribute("box", allProducts);
 		return "all-products-page";

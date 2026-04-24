@@ -1,34 +1,53 @@
 package lv.venta.model;
 
+import jakarta.annotation.Generated;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
+@Entity
+@Table(name = "ProductTable")
 public class Product {
 	@NotNull
 	@NotEmpty
 	@Pattern(regexp = "[A-Z]{1}[a-z]{2,20}")
+	@Column(name = "Title")
 	private String title;
 	
 	@NotNull
+	@Column(name = "Category")
 	private Category category;
 	
 	@Min(0)
-	@Max(100)
+	@Max(500)
+	@Column(name = "Price")
 	private float price;
 	
 	@Min(0)
 	@Max(100)
+	@Column(name = "Quantity")
 	private int quantity;
 	
 	@NotNull
 	@NotEmpty
+	@Column(name = "Description")
 	private String description;
 	
-	// Id should be unique from Data Base 
+	// Id should be unique from Data Base
+	@Column(name = "Id")
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
+//Getters and setters
 	public String getTitle() {
 		return title;
 	}
@@ -69,7 +88,7 @@ public class Product {
 // Constructors
 	public Product() {}
 	
-	public Product(int id, String title, Category category, float price, int quatity, String description) {
+	public Product( String title, Category category, float price, int quatity, String description) {
 		setId(id);
 		setTitle(title);
 		setCategory(category);
