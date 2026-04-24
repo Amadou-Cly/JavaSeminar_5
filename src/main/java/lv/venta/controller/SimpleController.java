@@ -40,17 +40,19 @@ public class SimpleController {
 		return "product-page";
 	}
 	
-	@GetMapping("/all-product")//localhost:8080/all-product
-	public String getControllerProduct(Model model) {
+	@GetMapping("/all-products")//localhost:8080/all-products
+	public String getControllerallproduct(Model model) {
 		System.out.println("All Product is running");
 		
 		Product productData1 = new Product(1, "apple",Category.fruits , 0.25f, 1, "fruits");
 		Product productData = new Product(3, "orange",Category.fruits , 0.85f, 5, "Ogange-fruits");
 		
 		ArrayList<Product>allProducts = new ArrayList<Product>();
+		allProducts.add(productData1);
+		allProducts.add(productData);
 		
+		model.addAttribute("box", allProducts);
+		return "all-products-page";
 		
-		model.addAttribute("box", all-productData);
-		return "all-product-page";
-		
+}
 }
