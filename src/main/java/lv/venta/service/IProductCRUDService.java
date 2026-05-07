@@ -26,6 +26,8 @@ public interface IProductCRUDService {
 	
 	//Delete by Id
 	public abstract void deleteProductById(int id) throws Exception;
+
+	ArrayList<Product> retrieveAllProducts() throws Exception;
 	
 	
 }
