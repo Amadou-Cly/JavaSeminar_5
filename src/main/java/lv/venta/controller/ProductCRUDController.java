@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -87,5 +88,81 @@ public class ProductCRUDController {
 			return "error-page";
 		}
 	}
+	
+	@GetMapping("/add")//localhost:8080/product/crud/add
+	public String getControllerForProductAdd(Model model) {
+		model.addAttribute("product", new Product());//empty products is passed
+		return "add-product-page";
+	}
 
+	@PostMapping("/add")
+	public String postControllerForProductAdd(Product product, Model model) {
+
+		try
+		{
+		prodService.createProduct(
+				product.getTitle(), 
+				product.getCategory(), 
+				product.getPrice(),
+				product.getQuantity(),
+				product.getDescription());
+
+		return "redirect:/product/crud/all";
+		}catch (Exception e) {
+			model.addAttribute("box", e.getMessage());
+			return "error-page";
+		}
+	}
+	
+	@GetMapping("/update/{id}")//localhost:8080/product/update/2
+	public String getControllerForProductUpdateById(
+			@PathVariable(name = "id") int id, Model model) {
+		
+		try
+		{
+			Product productFromDB = prodService.retreiveProductById(id);
+			model.addAttribute("product", productFromDB);
+			return "update-product-page";
+			
+		}catch (Exception e) {
+			model.addAttribute("box", e.getMessage());
+			return "error-page";
+		}
+	}
+	
+	@PostMapping("/update/{id}")
+	public String postControllerForProductUpdateById(
+			@PathVariable(name = "id") int id,
+			Model model, Product product) {
+		try
+		{
+		prodService.updateProductById(id, 
+				product.getTitle(),
+				product.getCategory(),
+				product.getPrice(),
+				product.getQuantity(),
+				product.getDescription());
+		
+		return "redirect:/product/crud/all";
+		
+		}catch (Exception e) {
+			model.addAttribute("box", e.getMessage());
+			return "error-page";
+		}
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
