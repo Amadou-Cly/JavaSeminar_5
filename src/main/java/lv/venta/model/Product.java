@@ -20,7 +20,7 @@ import jakarta.validation.constraints.Pattern;
 public class Product {
 	@NotNull
 	@NotEmpty
-	@Pattern(regexp = "[A-Z]{1}[a-z]{2,20}")
+	@Pattern(regexp = "[A-Z]{1}[a-z]{2,20}", message = "Title's fisrt letter should be capital")
 	@Column(name = "Title")
 	private String title;
 	
